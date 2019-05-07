@@ -4,7 +4,10 @@
 First, install [Docker](https://www.docker.com/). Next, run the Docker containers in detached mode:  
 `docker-compose up -d`
 
-The application will run on http://localhost:8000
+The Wordpress backend will run on http://localhost:8000
+
+To install the frontend:  
+`cd frontend && npm install && npm start`
 
 ## Credentials
 username: admin  
