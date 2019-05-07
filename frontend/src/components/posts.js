@@ -13,14 +13,19 @@ class Posts extends Component {
   }
 
   componentDidMount() {
-    return fetch(endpoints.posts)
+    const minPromise = new Promise((resolve, reject) => {
+      setTimeout(() => resolve(), 2000);
+    })
+    const dataPromise = fetch(endpoints.posts)
       .then(res => res.json())
       .then(posts => {
         this.setState({posts});
       })
       .catch(err => {
         console.error(err);
-      })
+      });
+
+    return Promise.all([minPromise, dataPromise]).then(() => this.props.onPostsLoaded());
   }
 
   render() {
