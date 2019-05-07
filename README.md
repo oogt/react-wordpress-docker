@@ -7,5 +7,5 @@ First, install [Docker](https://www.docker.com/). Next, run the Docker container
 The application will run on http://localhost:8000
 
 ## Credentials
-username: admin
+username: admin  
 password: see .env file (ask developer/admin)
