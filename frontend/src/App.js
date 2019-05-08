@@ -1,8 +1,11 @@
 import React, { Fragment, useState } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 
-import theme from './theme';
-import Posts from "./components/posts";
+import theme from "./theme";
+import Home from "./pages/home";
+import PostDetail from "./pages/post-detail";
+
 import Loader from "./components/loader";
 
 const GlobalStyle = createGlobalStyle`
@@ -38,21 +41,46 @@ const App = styled.div`
   color: ${props => props.theme.white};
   min-height: 100vh;
   overflow: hidden;
-`
 
-const AppContainer = (props) => {
+  a {
+    box-decoration-break: clone;
+    color: ${props => props.theme.white};
+    background: ${props => props.theme.black};
+    padding: 4px 8px;
+    line-height: 1.8em;
+  }
+`;
+
+const AppContainer = props => {
   const [showLoader, setShowLoader] = useState(true);
   return (
-    <ThemeProvider theme={theme}>
-      <Fragment>
-        <GlobalStyle />
-        <Loader show={showLoader} />
-        <App>
-          <Posts onPostsLoaded={() => setShowLoader(false)} />
-        </App>
-      </Fragment>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <Fragment>
+          <GlobalStyle />
+          <Loader show={showLoader} />
+          <App>
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <Home {...props} onPostsLoaded={() => setShowLoader(false)} />
+              )}
+            />
+            <Route
+              path="/:slug"
+              render={props => (
+                <PostDetail
+                  {...props}
+                  onPostLoaded={() => setShowLoader(false)}
+                />
+              )}
+            />
+          </App>
+        </Fragment>
+      </ThemeProvider>
+    </Router>
   );
-}
+};
 
 export default AppContainer;
