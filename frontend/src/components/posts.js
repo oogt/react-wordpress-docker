@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 import endpoints from '../config/endpoints';
 import Post from './post';
+
+const Panel = styled.div`
+  padding: 4rem;
+`;
+
+const PanelTitle = styled.h1`
+  display: inline-block;
+  border-bottom: ${props => props.theme.underlines.width} solid ${props => props.theme.white};
+  padding-bottom: 4px;
+`
 
 class Posts extends Component {
   constructor(props) {
@@ -14,7 +25,7 @@ class Posts extends Component {
 
   componentDidMount() {
     const minPromise = new Promise((resolve, reject) => {
-      setTimeout(() => resolve(), 2000);
+      setTimeout(() => resolve(), 500);
     })
     const dataPromise = fetch(endpoints.posts)
       .then(res => res.json())
@@ -30,14 +41,15 @@ class Posts extends Component {
 
   render() {
     return (
-      <div>
+      <Panel>
+        <PanelTitle>Recent posts</PanelTitle>
         {this.state.posts.map(post => {
           const featuredImage = post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0];
           return (
             <Post key={post.id} featuredImage={featuredImage} {...post} />
           )
         })}
-      </div>
+      </Panel>
     )
   }
 }

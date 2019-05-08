@@ -19,14 +19,14 @@ const LoaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #e03c16;
-  color: #fff;
+  background: ${props => props.theme.orange};
+  color: ${props => props.theme.white};
   position: absolute;
   flex: 1;
   top: 0;
   z-index: 999;
 
-  transition: all .25s cubic-bezier(.17,.67,.83,.67);
+  transition: all .25s ${props => props.theme.easing.default};
 
   opacity: ${props => props.show ? 1 : 0};
   pointer-events: ${props => props.show ? 'auto': 'none'};
@@ -42,7 +42,7 @@ const Circle = styled.div`
   position: absolute;
   left: -20px;
   top: -20px;
-  border: 2px solid #fff;
+  border: 2px solid ${props => props.theme.white};
   border-bottom-color: transparent;
   border-top-color: transparent;
   border-radius: 100%;
@@ -58,7 +58,7 @@ const SecondCircle = styled(Circle)`
   width: 15px;
   height: 15px;
   animation-duration: 0.5s;
-  border-color: #fff transparent #fff transparent;
+  border-color: ${props => props.theme.white} transparent ${props => props.theme.white} transparent;
   animation-direction: reverse;
 `
 
