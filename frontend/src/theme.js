@@ -3,7 +3,7 @@ export default {
   orange: '#e03c16',
   white: '#fff',
   underlines: {
-    width: '4px'
+    height: '4px'
   },
   easing: {
     default: 'cubic-bezier(.17,.67,.83,.67)'

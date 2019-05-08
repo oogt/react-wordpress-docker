@@ -10,7 +10,7 @@ const Panel = styled.div`
 
 const PanelTitle = styled.h1`
   display: inline-block;
-  border-bottom: ${props => props.theme.underlines.width} solid ${props => props.theme.white};
+  border-bottom: ${props => props.theme.underlines.height} solid ${props => props.theme.white};
   padding-bottom: 4px;
 `
 
@@ -43,10 +43,14 @@ class Posts extends Component {
     return (
       <Panel>
         <PanelTitle>Recent posts</PanelTitle>
-        {this.state.posts.map(post => {
+        {this.state.posts.map((post, index) => {
           const featuredImage = post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0];
           return (
-            <Post key={post.id} featuredImage={featuredImage} {...post} />
+            <Post
+              key={post.id}
+              featuredImage={featuredImage}
+              even={index % 2 === 0}
+              {...post} />
           )
         })}
       </Panel>

@@ -1,41 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
+import { Flex, Box } from 'reflexbox';
 
-const PostContainer = styled.div`
-  padding-left: 2em;
-`
-
-const Title = styled.h2`
-  position: relative;
-  display: inline-block;
-
-  &:before {
-    content: "";
-    display: block;
-    width: 0;
-    left: 50%;
-    height: ${props => props.theme.underlines.width};
-    background: ${props => props.theme.white};
-    position: absolute;
-    bottom: -10px;
-
-    transition: all .25s ${props => props.theme.easing.default};
-  }
-
-  &:hover:before {
-    left: 0;
-    width: 100%;
-  }
-`
-
-const Post = ({ title, content, featuredImage, ...post }) => console.log({content, post, featuredImage}) || (
-  <PostContainer>
-    <Title>{ title.rendered }</Title>
-    <div dangerouslySetInnerHTML={{ __html: content.rendered }} />
+const Post = ({ title, content, featuredImage, even, ...post }) => console.log({title, content, post, featuredImage}) || (
+  <Flex justify="space-between" align="center" p={4}>
+    <Box p={2} order={even ? 1 : 2} w={[1, 1/2]}>
+      <h2 dangerouslySetInnerHTML={{ __html: title.rendered}} />
+      <div dangerouslySetInnerHTML={{ __html: content.rendered }} />
+    </Box>
     {featuredImage && (
-        <img src={featuredImage.source_url} alt={featuredImage.alt_text} />
+        <Box p={2} order={even ? 2 : 1} w={[1, 1/2]}>
+          <img src={featuredImage.source_url} alt={featuredImage.alt_text} />
+        </Box>
     )}
-  </PostContainer>
+  </Flex>
 )
 
 export default Post;
