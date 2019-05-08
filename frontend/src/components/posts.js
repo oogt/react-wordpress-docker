@@ -31,9 +31,12 @@ class Posts extends Component {
   render() {
     return (
       <div>
-        {this.state.posts.map(post => (
-          <Post key={post.id} {...post} />
-        ))}
+        {this.state.posts.map(post => {
+          const featuredImage = post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0];
+          return (
+            <Post key={post.id} featuredImage={featuredImage} {...post} />
+          )
+        })}
       </div>
     )
   }
