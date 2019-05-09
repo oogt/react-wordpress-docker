@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import axios from "axios";
 
 import { withMinDuration } from '../utils/promises';
 import endpoints from '../config/endpoints';
@@ -26,10 +27,10 @@ class Posts extends Component {
   }
 
   componentDidMount() {
-    const dataPromise = fetch(endpoints.posts)
-      .then(res => res.json())
-      .then(posts => {
-        this.setState({posts});
+    const dataPromise = axios
+      .get(endpoints.posts)
+      .then(res => {
+        this.setState({posts: res.data});
       })
       .catch(err => {
         console.error(err);

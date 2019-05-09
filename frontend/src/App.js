@@ -41,7 +41,7 @@ const GlobalStyle = createGlobalStyle`
 
   .${transitionName}-enter {
     opacity: 0;
-    transform: translateY(2em);
+    transform: translateY(1em);
   }
 
   .${transitionName}-enter.${transitionName}-enter-active {
@@ -57,7 +57,7 @@ const GlobalStyle = createGlobalStyle`
 
   .${transitionName}-exit.${transitionName}-exit-active {
     opacity: 0;
-    transform: translateY(2em);
+    transform: translateY(1em);
     transition: all ${transitionDuration}ms;
   }
 `;
