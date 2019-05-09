@@ -1,6 +1,7 @@
-const baseUrl = 'http://3.120.190.38/';
+import config from './env';
+
 const wpApiPrefix = 'wp-json/wp/v2/';
-const apiUrl = baseUrl + wpApiPrefix;
+const apiUrl = config.wpUrl + wpApiPrefix;
 
 const getUrl = suffix => apiUrl + suffix;
 
