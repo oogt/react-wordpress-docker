@@ -4,6 +4,7 @@ import axios from "axios";
 import { withMinDuration } from "../utils/promises";
 import endpoints from "../config/endpoints";
 import Post from "../components/post";
+import Page from '../components/page';
 import WithFeaturedImage from "../components/with-featured-image";
 
 class PostDetail extends Component {
@@ -30,18 +31,24 @@ class PostDetail extends Component {
 
   render() {
     const { post } = this.state;
-    console.log(post);
 
     if (!post) {
       return null;
     }
 
     return (
-      <WithFeaturedImage post={post}>
-        {featuredImage => (
-          <Post {...post} even={true} featuredImage={featuredImage} />
-        )}
-      </WithFeaturedImage>
+      <Page>
+        <WithFeaturedImage post={post}>
+          {featuredImage => (
+            <Post
+              {...post}
+              even={true}
+              featuredImage={featuredImage}
+              isDetail={true}
+            />
+          )}
+        </WithFeaturedImage>
+      </Page>
     );
   }
 }

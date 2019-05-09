@@ -21,7 +21,7 @@ const LoaderContainer = styled.div`
   justify-content: center;
   background: ${props => props.theme.orange};
   color: ${props => props.theme.white};
-  position: absolute;
+  position: fixed;
   flex: 1;
   top: 0;
   z-index: 999;
