@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:8000/';
+const baseUrl = 'http://3.120.190.38/';
 const wpApiPrefix = 'wp-json/wp/v2/';
 const apiUrl = baseUrl + wpApiPrefix;
 
