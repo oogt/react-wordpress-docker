@@ -1,81 +1,31 @@
 import React, { Component, Fragment } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
-import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { Box, Flex } from "reflexbox";
 
 import theme from "./theme";
 import Home from "./pages/home";
 import PostDetail from "./pages/post-detail";
-
+import PageDetail from "./pages/page-detail";
+import Header from "./components/header";
+import GlobalStyle, {
+  transitionName,
+  transitionDuration
+} from "./components/global-style";
 import Loader from "./components/loader";
 
-const transitionName = 'fade';
-const transitionDuration = 400;
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-family: 'Josefin Slab', serif;
-    font-size: 24px;
-  }
-
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Work Sans", sans-serif;
-  }
-
-  .${transitionName}-enter {
-    opacity: 0;
-    transform: translateY(1em);
-  }
-
-  .${transitionName}-enter.${transitionName}-enter-active {
-    opacity: 1;
-    transform: translateY(0);
-    transition: all ${transitionDuration}ms;
-  }
-
-  .${transitionName}-exit {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .${transitionName}-exit.${transitionName}-exit-active {
-    opacity: 0;
-    transform: translateY(1em);
-    transition: all ${transitionDuration}ms;
-  }
-`;
-
-const App = styled.div`
+const App = styled(Flex)`
   background: ${props => props.theme.blue};
   color: ${props => props.theme.white};
   min-height: 100vh;
-  overflow-y: auto;
+  overflow: hidden;
   position: relative;
+`;
 
-  a {
-    box-decoration-break: clone;
-    color: ${props => props.theme.white};
-    background: ${props => props.theme.black};
-    padding: 4px 8px;
-    line-height: 1.8em;
-  }
+const Container = styled(Box)`
+  overflow-y: scroll;
+  position: relative;
 `;
 
 class AppContainer extends Component {
@@ -110,13 +60,14 @@ class AppContainer extends Component {
               <GlobalStyle />
               <Loader show={this.state.showLoader} />
               <App>
-                <TransitionGroup>
-                  <CSSTransition
-                    key={location.key}
-                    classNames={transitionName}
-                    timeout={transitionDuration}
-                  >
-                    <div>
+                <Header />
+                <Container auto>
+                  <TransitionGroup component={null}>
+                    <CSSTransition
+                      key={location.key}
+                      classNames={transitionName}
+                      timeout={transitionDuration}
+                    >
                       <Switch location={location}>
                         <Route
                           exact
@@ -129,7 +80,7 @@ class AppContainer extends Component {
                           )}
                         />
                         <Route
-                          path="/:slug"
+                          path="/p/:slug"
                           render={props => (
                             <PostDetail
                               {...props}
@@ -137,10 +88,19 @@ class AppContainer extends Component {
                             />
                           )}
                         />
+                        <Route
+                          path="/:slug"
+                          render={props => (
+                            <PageDetail
+                              {...props}
+                              onPageLoaded={() => this.setShowLoader(false)}
+                            />
+                          )}
+                        />
                       </Switch>
-                    </div>
-                  </CSSTransition>
-                </TransitionGroup>
+                    </CSSTransition>
+                  </TransitionGroup>
+                </Container>
               </App>
             </Fragment>
           </ThemeProvider>

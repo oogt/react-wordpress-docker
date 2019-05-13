@@ -3,7 +3,7 @@ const testConfig = {
 }
 
 const prodConfig = {
-  wpUrl: 'http://3.120.190.38/'
+  wpUrl: 'https://wp-test-api.oogt-dev.nl/'
 }
 
 const getConfig = env => {

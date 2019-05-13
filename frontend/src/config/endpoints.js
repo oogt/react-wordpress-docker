@@ -7,8 +7,12 @@ const getUrl = suffix => apiUrl + suffix;
 
 const posts = getUrl('posts?_embed');
 const post = slug => getUrl(`posts?slug=${slug}&_embed`);
+const pages = getUrl('pages');
+const page = slug => getUrl(`pages?slug=${slug}`);
 
 export default {
   posts,
-  post
+  post,
+  pages,
+  page
 }

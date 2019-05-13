@@ -8,7 +8,7 @@ const PostTitle = ({ isDetail, title, slug }) => {
   }
   return (
     <h2>
-      <Link to={`/${slug}`} dangerouslySetInnerHTML={{ __html: title }} />
+      <Link to={`p/${slug}`} dangerouslySetInnerHTML={{ __html: title }} />
     </h2>
   );
 };
