@@ -1,9 +1,8 @@
 FE_FOLDER := frontend
-BUCKET_NAME := wp-test.oogt-dev.nl
 
 .DEFAULT_GOAL := help
 
-.PHONY: help start-backend start-frontend deploy-frontend
+.PHONY: help start-backend start-frontend deploy-frontend deploy-frontend-prod
 
 help:           ## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
