@@ -15,7 +15,7 @@ const PanelTitle = styled.h1`
 
 const Posts = ({ posts }) => (
   <Panel>
-    <PanelTitle>Recent posts</PanelTitle>
+    <PanelTitle>Recent posts </PanelTitle>
     {posts && posts.map((post, index) => <Post key={post.id} even={index % 2 === 0} {...post} />)}
   </Panel>
 );

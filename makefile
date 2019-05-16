@@ -14,6 +14,8 @@ start-backend:	## Start the Wordpress Docker image
 start-frontend:	## Start the React frontend running on an Express server (Next.js)
 	cd $(FE_FOLDER) && npm install && npm run dev
 
-deploy-frontend: ## Deploys a fresh build to Amazon
-	@echo "Needs to be implemented"
-	#cd $(FE_FOLDER) && npm run build && aws s3 sync build/ s3://$(BUCKET_NAME)
+deploy-frontend: ## Deploys a fresh build to Now
+	cd $(FE_FOLDER) && now
+
+deploy-frontend-prod: ## Deploys a fresh build to Now and aliases it
+	cd $(FE_FOLDER) && now --target production

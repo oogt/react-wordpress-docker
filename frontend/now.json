@@ -1,0 +1,14 @@
+{
+  "name": "react-wordpress-docker",
+  "version": 2,
+  "builds": [{ "src": "next.config.js", "use": "@now/next" }],
+  "alias": "wp-test-now.oogt-dev.nl",
+  "routes": [
+    {
+      "src": "/_next/static/(?:[^/]+/pages|chunks|runtime)/.+",
+      "headers": { "cache-control": "immutable,max-age=31536000" }
+    },
+    { "src": "/(?<slug>[^/]+)$", "dest": "/page?slug=$slug" },
+    { "src": "/p/(?<slug>[^/]+)$", "dest": "/post?slug=$slug" }
+  ]
+}

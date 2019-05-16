@@ -15,7 +15,8 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "now-build": "next build"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.0",
