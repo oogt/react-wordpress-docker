@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import styled from 'styled-components';
-import { Flex, Box } from 'reflexbox';
+import styled, { keyframes } from 'styled-components';
+import { Flex, Box } from '@rebass/grid';
 
 import CurvedBlock from './curved-block';
 
@@ -10,7 +10,7 @@ const FooterContainer = styled.footer`
   padding: 2em 2em 4em;
   position: relative;
   overflow: hidden;
-`
+`;
 
 const Column = styled(Box)`
   margin-right: 1em;
@@ -18,11 +18,9 @@ const Column = styled(Box)`
   &:last-child {
     margin-right: 0;
   }
-`
+`;
 
-const BackgroundText = ({ text, ...props }) => (
-  <div {...props}>{text}</div>
-)
+const BackgroundText = ({ text, ...props }) => <div {...props}>{text}</div>;
 
 const StyledBackgroundText = styled(BackgroundText)`
   position: absolute;
@@ -32,23 +30,36 @@ const StyledBackgroundText = styled(BackgroundText)`
   font-weight: bold;
   text-transform: uppercase;
   white-space: nowrap;
-  opacity: .1;
+  opacity: 0.1;
   user-select: none;
-`
+`;
 
 const footerDoodleHeight = 480;
 
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
 const FooterCircle = styled.div`
   position: absolute;
-  height: ${props => props.inner ? footerDoodleHeight / 2 : footerDoodleHeight}px;
-  width: ${props => props.inner ? footerDoodleHeight / 2 : footerDoodleHeight}px;
-  border-radius: ${props => props.inner ? footerDoodleHeight / 2 : footerDoodleHeight}px;
-  border-style: ${props => props.inner ? 'solid': 'dashed'};
+  height: ${props => (props.inner ? footerDoodleHeight / 2 : footerDoodleHeight)}px;
+  width: ${props => (props.inner ? footerDoodleHeight / 2 : footerDoodleHeight)}px;
+  border-radius: ${props => (props.inner ? footerDoodleHeight / 2 : footerDoodleHeight)}px;
+  border-style: ${props => (props.inner ? 'dotted' : 'dashed')};
   color: ${props => props.theme.white};
   left: 80%;
-  margin-left: -${props => props.inner ? footerDoodleHeight / 4 : footerDoodleHeight / 2}px;
-  top: ${props => props.inner ? footerDoodleHeight / 4 : 0}px;
-`
+  margin-left: -${props => (props.inner ? footerDoodleHeight / 4 : footerDoodleHeight / 2)}px;
+  top: ${props => (props.inner ? footerDoodleHeight / 4 : 0)}px;
+  animation: ${rotate} ${({ inner }) => (inner ? '128s' : '256s')} linear;
+  animation-direction: ${({ inner }) => (inner ? 'normal' : 'reverse')};
+  animation-iteration-count: infinite;
+`;
 
 const FooterDoodleContainer = styled(CurvedBlock)`
   position: relative;
@@ -57,14 +68,14 @@ const FooterDoodleContainer = styled(CurvedBlock)`
   path {
     fill: ${props => props.theme.orange};
   }
-`
+`;
 
 const FooterDoodle = () => (
   <FooterDoodleContainer height={footerDoodleHeight / 2}>
     <FooterCircle />
     <FooterCircle inner />
   </FooterDoodleContainer>
-)
+);
 
 const Footer = () => (
   <Fragment>

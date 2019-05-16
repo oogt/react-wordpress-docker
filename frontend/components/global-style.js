@@ -30,6 +30,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Work Sans", sans-serif;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   .${transitionName}-enter {
     opacity: 0;
     transform: translateY(1em);

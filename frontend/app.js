@@ -1,19 +1,18 @@
-import React, { Component, Fragment } from "react";
-import { Route, Switch, withRouter } from "react-router-dom";
-import styled, { ThemeProvider } from "styled-components";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { Box, Flex } from "reflexbox";
+// Can be phased out, saved for Loader and Transition reference
 
-import theme from "./theme";
-import Home from "./pages/home";
-import PostDetail from "./pages/post-detail";
-import PageDetail from "./pages/page-detail";
-import Header from "./components/header";
-import GlobalStyle, {
-  transitionName,
-  transitionDuration
-} from "./components/global-style";
-import Loader from "./components/loader";
+import React, { Component, Fragment } from 'react';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import styled, { ThemeProvider } from 'styled-components';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Box, Flex } from 'reflexbox';
+
+import theme from './theme';
+import Home from './pages/home';
+import PostDetail from './pages/post-detail';
+import PageDetail from './pages/page-detail';
+import Header from './components/header';
+import GlobalStyle, { transitionName, transitionDuration } from './components/global-style';
+import Loader from './components/loader';
 
 const App = styled(Flex)`
   background: ${props => props.theme.blue};
@@ -33,7 +32,7 @@ class AppContainer extends Component {
     super(props);
 
     this.state = {
-      showLoader: true
+      showLoader: true,
     };
 
     this.setShowLoader = this.setShowLoader.bind(this);
@@ -41,7 +40,7 @@ class AppContainer extends Component {
 
   setShowLoader(show) {
     this.setState({
-      showLoader: show
+      showLoader: show,
     });
   }
 
@@ -73,28 +72,19 @@ class AppContainer extends Component {
                           exact
                           path="/"
                           render={props => (
-                            <Home
-                              {...props}
-                              onPostsLoaded={() => this.setShowLoader(false)}
-                            />
+                            <Home {...props} onPostsLoaded={() => this.setShowLoader(false)} />
                           )}
                         />
                         <Route
                           path="/p/:slug"
                           render={props => (
-                            <PostDetail
-                              {...props}
-                              onPostLoaded={() => this.setShowLoader(false)}
-                            />
+                            <PostDetail {...props} onPostLoaded={() => this.setShowLoader(false)} />
                           )}
                         />
                         <Route
                           path="/:slug"
                           render={props => (
-                            <PageDetail
-                              {...props}
-                              onPageLoaded={() => this.setShowLoader(false)}
-                            />
+                            <PageDetail {...props} onPageLoaded={() => this.setShowLoader(false)} />
                           )}
                         />
                       </Switch>

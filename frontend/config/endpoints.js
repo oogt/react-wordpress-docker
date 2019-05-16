@@ -14,5 +14,5 @@ export default {
   posts,
   post,
   pages,
-  page
-}
+  page,
+};

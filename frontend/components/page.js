@@ -15,26 +15,25 @@ const PageContainer = styled.div`
     background: ${props => props.theme.black};
     padding: 4px 8px;
     line-height: 1.8em;
+    text-decoration: underline;
   }
-`
+`;
 
 const InnerPage = styled.div`
   position: relative;
-`
+`;
 
 const ContentContainer = styled.div`
   min-height: 60vh;
-`
+`;
 
 const Page = ({ children }) => (
   <PageContainer>
     <InnerPage>
-      <ContentContainer>
-        {children}
-      </ContentContainer>
+      <ContentContainer>{children}</ContentContainer>
       <Footer />
     </InnerPage>
   </PageContainer>
-)
+);
 
 export default Page;
